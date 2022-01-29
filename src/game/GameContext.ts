@@ -1,3 +1,4 @@
+import Player from 'common/src/Player';
 import React, { Dispatch, Reducer } from 'react';
 
 export interface Game {
@@ -5,17 +6,15 @@ export interface Game {
     playerId?: number,
     playerName?: string,
     roomId?: number,
-    roomCode?: string
+    roomCode?: string,
+    hand?: number[],
+    players?: Player[],
 };
 
 export type Action = Partial<Game>
 
 export const gameReducer: Reducer<Game, Action> = (state, action) => {
-    console.log("OLD STATE", state);
-    console.log("ACTION", action);
-    const newState = {...state, ...action};
-    console.log("NEW STATE", newState);
-    return newState;
+    return {...state, ...action};
 }
 
 export const GameContext = React.createContext<{state: Game, dispatch?: Dispatch<Action>}>({state: {}});
