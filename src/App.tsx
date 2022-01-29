@@ -7,16 +7,15 @@ import './App.css';
 import { Message, ReconnectRequestPayload } from 'common/src/Message';
 import { MessageType } from 'common/src/MessageType';
 
-let ws = new WebSocket(process.env.REACT_APP_WS_HOST || "");
-
 function App() {
   const [state, setState] = useState(State.LOGIN);
   const [game, dispatch] = useReducer(gameReducer, {});
+  const [ws, setWebSocket] = useState(new WebSocket(process.env.REACT_APP_WS_HOST || ""));
 
   useEffect(() => {
     setInterval(() => {
       if (ws.readyState === ws.CLOSED || ws.readyState === ws.CLOSING) {
-        ws = new WebSocket(process.env.REACT_APP_WS_HOST || "");
+        setWebSocket(new WebSocket(process.env.REACT_APP_WS_HOST || ""));
         if (!game.playerId) {
           setState(State.LOGIN);
           return;
@@ -31,7 +30,7 @@ function App() {
         return;
       }
     }, 5000);
-  })
+  }, [game.playerId, ws])
 
   const StateComponent = states[state];
   return <WebSocketContext.Provider value={ws}>
