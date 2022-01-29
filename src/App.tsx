@@ -15,35 +15,23 @@ function App() {
 
   useEffect(() => {
     setInterval(() => {
-      console.log("Testing socket state", ws.readyState);
       if (ws.readyState === ws.CLOSED || ws.readyState === ws.CLOSING) {
-        console.log("ERROR");
+        ws = new WebSocket(process.env.REACT_APP_WS_HOST || "");
+        if (!game.playerId) {
+          setState(State.LOGIN);
+          return;
+        }
+        const message: Message<ReconnectRequestPayload> = {
+          type: MessageType.RECONNECT,
+          payload: {
+            id: game.playerId
+          }
+        }
+        ws.send(JSON.stringify(message));
         return;
       }
-      console.log("OK!");
     }, 5000);
   })
-  // useEffect(() => {
-  //   const reconnect = () => {
-  //     console.log("DROPPED CONNECTION, RESTARTING");
-  //     setTimeout(() => {
-  //       ws = new WebSocket(process.env.REACT_APP_WS_HOST || "");
-  //       if (!game.playerId) {
-  //         setState(State.LOGIN);
-  //         return;
-  //       }
-  //       const message: Message<ReconnectRequestPayload> = {
-  //         type: MessageType.RECONNECT,
-  //         payload: {
-  //           id: game.playerId
-  //         }
-  //       }
-  //       ws.send(JSON.stringify(message));
-  //     }, 1000);
-  //   }
-  //   ws.addEventListener("close", reconnect);
-  //   return ws.removeEventListener("close", reconnect);
-  // }, []);
 
   const StateComponent = states[state];
   return <WebSocketContext.Provider value={ws}>
