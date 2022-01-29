@@ -26,7 +26,7 @@ export default function IndexPage() {
     }
 
     return <div>
-        <input type="text" placeholder="User Name" onChange={handleChange}/>
+        <input type="text" placeholder="User Name" onChange={handleChange} onSubmit={clickHandler}/>
         <button onClick={clickHandler}>Enter</button>
     </div>
 }
