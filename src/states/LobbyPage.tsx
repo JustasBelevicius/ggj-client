@@ -4,6 +4,8 @@ import { Message, JoinRoomRequestPayload, CreateRoomRequestPayload } from "commo
 import React, { ChangeEvent, useContext, useState } from "react"
 import { WebSocketContext } from "../WebSocketContext";
 import { GameContext } from "../game/GameContext";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 export default function LobbyPage() {
     const [room, setRoom]= useState<string | undefined>(undefined);
@@ -46,9 +48,9 @@ export default function LobbyPage() {
     };
 
     return <div>
-        <input type="text" placeholder="Room Code" onChange={handleChange} onSubmit={handleJoin}/>
-        <button onClick={handleJoin}>Join Room</button>
+        <Input placeholder="Room Code" onChange={handleChange} onSubmit={handleJoin}/>
+        <Button onClick={handleJoin} title="Join Room"/>
         <span>or</span>
-        <button onClick={handleCreate}>Create Room</button>
+        <Button onClick={handleCreate} title="Create Room"/>
     </div>
 }
