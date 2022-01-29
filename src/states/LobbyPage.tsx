@@ -48,9 +48,9 @@ export default function LobbyPage() {
     };
 
     return <div>
-        <Input placeholder="Room Code" onChange={handleChange} onSubmit={handleJoin}/>
-        <Button onClick={handleJoin} title="Join Room"/>
+        <Input extraClass="new-line" placeholder="Room Code" onChange={handleChange} onSubmit={handleJoin}/>
+        <Button extraClass="new-line full-width" onClick={handleJoin} title="Join Room"/>
         <span>or</span>
-        <Button onClick={handleCreate} title="Create Room"/>
+        <Button extraClass="new-line full-width" onClick={handleCreate} title="Create Room"/>
     </div>
 }
