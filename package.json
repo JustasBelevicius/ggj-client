@@ -1,7 +1,7 @@
 {
   "name": "ggj22",
   "version": "0.1.0",
-  "homepage": "https://justasbelevicius.github.io/ggj22-client",
+  "homepage": "https://justasbelevicius.github.io/ggj-client/",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.16.0",
