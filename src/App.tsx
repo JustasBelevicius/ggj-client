@@ -4,7 +4,6 @@ import StateHandler from './StateHandler';
 import states, { State } from './States';
 import { WebSocketContext } from './WebSocketContext';
 import './App.css';
-import board from './assets/board.png';
 
 console.log(process.env.REACT_APP_WS_HOST);
 const ws = new WebSocket(process.env.REACT_APP_WS_HOST || "");
@@ -17,8 +16,9 @@ function App() {
   return <WebSocketContext.Provider value={ws}>
     <GameContext.Provider value={{ state: game, dispatch }}>
       <StateHandler changeState={setState} />
-      <div className='content'>
-        <img className='board' src={board} alt='background' />
+      <div className='content' style={{
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/board.png)`
+      }}>
         <div className='playArea'>
           <StateComponent />
         </div>

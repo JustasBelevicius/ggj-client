@@ -26,6 +26,7 @@ export default function StateHandler({ changeState }: { changeState: (state: str
             case MessageType.CREATE_ROOM:
                 payload = message.payload as CreateRoomResponsePayload;
                 dispatch?.({
+                    gm: true,
                     roomCode: payload.code,
                     roomId: payload.id
                 })

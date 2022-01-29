@@ -50,7 +50,7 @@ export default function LobbyPage() {
     return <div>
         <Input extraClass="new-line" placeholder="Room Code" onChange={handleChange} onSubmit={handleJoin}/>
         <Button extraClass="new-line full-width" onClick={handleJoin} title="Join Room"/>
-        <span>or</span>
+        <span className="or">or</span>
         <Button extraClass="new-line full-width" onClick={handleCreate} title="Create Room"/>
     </div>
 }

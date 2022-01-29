@@ -1,6 +1,7 @@
 import React, { Dispatch, Reducer } from 'react';
 
 export interface Game {
+    gm?: boolean,
     playerId?: number,
     playerName?: string,
     roomId?: number,
