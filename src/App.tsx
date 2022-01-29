@@ -14,11 +14,14 @@ function App() {
   const [game, dispatch] = useReducer(gameReducer, {});
 
   useEffect(() => {
-    // setInterval(() => {
-      ws.addEventListener("error", () => {
+    setInterval(() => {
+      console.log("Testing socket state", ws.readyState);
+      if (ws.readyState === ws.CLOSED || ws.readyState === ws.CLOSING) {
         console.log("ERROR");
-      })
-    // }, 5000);
+        return;
+      }
+      console.log("OK!");
+    }, 5000);
   })
   // useEffect(() => {
   //   const reconnect = () => {
