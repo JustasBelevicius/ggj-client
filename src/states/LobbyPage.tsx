@@ -6,6 +6,7 @@ import { WebSocketContext } from "../WebSocketContext";
 import { GameContext } from "../game/GameContext";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import './LobbyPage.css';
 
 export default function LobbyPage() {
     const [room, setRoom]= useState<string | undefined>(undefined);
@@ -50,7 +51,7 @@ export default function LobbyPage() {
     return <div>
         <Input extraClass="new-line" placeholder="Room Code" onChange={handleChange} onSubmit={handleJoin}/>
         <Button extraClass="new-line full-width" onClick={handleJoin} title="Join Room"/>
-        <span className="or">or</span>
+        <p className="or">or</p>
         <Button extraClass="new-line full-width" onClick={handleCreate} title="Create Room"/>
     </div>
 }

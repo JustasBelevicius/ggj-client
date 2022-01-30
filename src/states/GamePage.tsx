@@ -27,7 +27,7 @@ export function GamePage() {
     return (
         <div>
             <h1>ROOM CODE: {state.roomCode}</h1>
-            {!!state.gm && <Button onClick={handleStart} title='Start'/>}
+            {!!state.gm && <Button onClick={handleStart} title='Start' extraClass='full-width'/>}
         </div>
     );
 }

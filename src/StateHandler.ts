@@ -1,5 +1,5 @@
 import { MessageType } from 'common/src/MessageType';
-import { CreateRoomResponsePayload, JoinRoomResponsePayload, LoginResponsePayload, Message, MessagePayload, StartGameResponsePayload, StatusResponsePayload } from 'common/src/Message';
+import { CreateRoomResponsePayload, JoinRoomResponsePayload, LoginResponsePayload, Message, MessagePayload, PlayCardResponsePayload, StartGameResponsePayload, StatusResponsePayload } from 'common/src/Message';
 import { useCallback, useContext, useEffect } from 'react';
 import { State } from './States';
 import { WebSocketContext } from './WebSocketContext';
@@ -38,13 +38,22 @@ export default function StateHandler({ changeState }: { changeState: (state: str
                     roomCode: payload.code
                 });
                 return State.GAME;
-            case MessageType.START_GAME:
-                payload = message.payload as StartGameResponsePayload;
-                dispatch?.({
-                    hand: payload.hand,
-                    players: payload.players
-                })
-                return State.MATCH;
+                case MessageType.START_GAME:
+                    payload = message.payload as StartGameResponsePayload;
+                    dispatch?.({
+                        hand: payload.hand,
+                        players: payload.players,
+                        currentPlayer: payload.currentPlayer
+                    })
+                    return State.MATCH;
+                case MessageType.PLAY_CARD:
+                    payload = message.payload as PlayCardResponsePayload;
+                    dispatch?.({
+                        hand: payload.hand,
+                        players: payload.players,
+                        currentPlayer: payload.currentPlayer
+                    })
+                    return State.MATCH;
             default:
                 return State.LOGIN;
         }

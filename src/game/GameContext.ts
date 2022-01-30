@@ -9,6 +9,7 @@ export interface Game {
     roomCode?: string,
     hand?: number[],
     players?: Player[],
+    currentPlayer?: number,
 };
 
 export type Action = Partial<Game>

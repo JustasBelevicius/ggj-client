@@ -16,9 +16,9 @@ function App() {
     <GameContext.Provider value={{ state: game, dispatch }}>
       <StateHandler changeState={setState} />
       <div className='content' style={{
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/board.png)`
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/board.png)`,
       }}>
-        <div className='playArea'>
+        <div className={'playArea ' + state}>
           <StateComponent />
         </div>
       </div>

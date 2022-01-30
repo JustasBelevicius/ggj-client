@@ -10,7 +10,7 @@ const _state = {
     MATCH: "MATCH",
 }
 
-const states: {[key: string]: () => JSX.Element} = {
+const states: {[key: string]: () => JSX.Element | null} = {
     [_state.LOGIN]: LoginPage,
     [_state.LOBBY]: LobbyPage,
     [_state.GAME]: GamePage,
