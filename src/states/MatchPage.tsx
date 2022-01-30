@@ -65,7 +65,7 @@ function PlayerItem({ player, onClick, selected }: { player: Player, onClick: (i
     }
     
     return <div className={'player' + (selected ? ' selected' : '')}>
-        <img className='player-img' src='http://placekitten.com/200/200'/>
+        <img className='player-img' src={`${process.env.PUBLIC_URL}/images/profile-${player.id % 4}.png`}/>
         <div className='player-tokens'>
             {tokens}
         </div>
